@@ -16,7 +16,7 @@ def generate_random_name(length=20):
 
 
 # Configuration
-subscription_id = 'YOU-SUBSCRIPTION-ID'
+subscription_id = 'YOUR-SUBSCRIPTION-ID'
 resource_group_name = 'Automated-C2'
 location = 'westeurope'  # Choisissez votre région
 vm_name = 'c2-deploy'
