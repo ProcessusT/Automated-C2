@@ -318,6 +318,21 @@ result = compute_client.virtual_machines.begin_run_command(
     }
 ).result()
 
+# x86_64-w64-mingw32-cross
+print(f"[+] Installing x86_64-w64-mingw32-cross...")
+result = compute_client.virtual_machines.begin_run_command(
+    resource_group_name=resource_group_name,
+    vm_name=vm_name,
+    parameters={
+        'commandId': 'RunShellScript',
+        'script': [
+            'cd /opt && sudo wget http://musl.cc/x86_64-w64-mingw32-cross.tgz',
+            'cd /opt && sudo tar xvf ./x86_64-w64-mingw32-cross.tgz',
+            'cd /opt && sudo chmod 777 -R ./x86_64-w64-mingw32-cross'
+        ]
+    }
+).result()
+
 # Havoc C2
 print(f"[+] Installing Havoc C2...")
 result = compute_client.virtual_machines.begin_run_command(
@@ -344,7 +359,7 @@ Teamserver {
     Host = "0.0.0.0"
     Port = "{c2_port}"
     Build {
-        Compiler64 = "/usr/bin/x86_64-w64-mingw32-gcc"
+        Compiler64 = "/opt/x86_64-w64-mingw32-cross/bin/x86_64-w64-mingw32-gcc"
         Compiler86 = "/usr/bin/i686-w64-mingw32-gcc"
         Nasm = "/usr/bin/nasm"
     }
