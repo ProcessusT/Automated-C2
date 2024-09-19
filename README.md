@@ -40,7 +40,7 @@ pip install azure-mgmt-frontdoor
 az login
 ```
 
-Edit the Automated-C2.py to specified the subscription ID to use.
+Edit the Automated-C2.py file to specify the subscription ID to use.
 
 ```
 python3 ./Automated-C2.py
