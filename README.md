@@ -24,6 +24,27 @@ This project provides a sophisticated mechanism for setting up a command and con
 - **Python 3.x**: The script is written in Python and requires Python3 to run.
 - **Azure CLI**: Install the Azure CLI tool for interacting with Azure resources.
 
+## Installation
+
+
+```
+python3 -m venv venv
+source venv/bin/activate
+
+pip install azure-identity
+pip install azure-mgmt-compute
+pip install azure-mgmt-resource
+pip install azure-mgmt-network
+pip install azure-mgmt-frontdoor
+
+az login
+```
+
+Edit the Automated-C2.py file to specify the subscription ID to use.
+
+```
+python3 ./Automated-C2.py
+```
 
 ## Technical Details
 
@@ -43,6 +64,18 @@ To prevent pattern-based detection, the script generates random URIs and ports f
 
 The Havoc C2 server is installed on the VM using a series of automated steps. The script ensures the server is configured to use the randomized URIs and ports, establishing a secure and flexible C2 infrastructure.
 
+## Troubleshooting
+
+Possible issue:
+azure.core.exceptions.ResourceExistsError: (MissingSubscriptionRegistration) The subscription is not registered to use namespace 'Microsoft.Compute'. See https://aka.ms/rps-not-found for how to register subscriptions.
+
+Solution :
+
+```
+az provider register --namespace Microsoft.Compute
+```
+
+Delete the resource group and restart the deployment script.
 
 ## Contributing
 
